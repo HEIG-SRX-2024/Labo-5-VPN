@@ -7,7 +7,7 @@ if ip link | grep -q eth1; then
   nft add rule nat postrouting oif eth0 masquerade
 else
   IP=$( ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1 )
-  if [[ "$IP" =~ /10.0.0./ ]]; then
+  if [[ "$IP" =~ 10.0.0. ]]; then
     echo "It's the remote laptop"
   else
     echo "It's a client"

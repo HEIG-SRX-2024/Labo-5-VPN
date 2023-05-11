@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
     main_server:
+        platform: linux/amd64
         hostname: 'MainServer'
         container_name: 'MainS'
         image: ghcr.io/heig-srx-2023/srx-labo-5
