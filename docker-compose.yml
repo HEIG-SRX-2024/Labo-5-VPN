@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     main_server:
-        platform: linux/amd64
+#        platform: linux/amd64
         hostname: 'MainServer'
         container_name: 'MainS'
         image: ghcr.io/heig-srx-2023/srx-labo-5
@@ -12,6 +12,8 @@ services:
         volumes:
             - ./root/main:/root
         stdin_open: true
+        ports:
+            - 1194:1194/udp
         environment:
             - RUN
         tty: true
@@ -56,6 +58,8 @@ services:
         stdin_open: true
         environment:
             - RUN
+        depends_on:
+            - main_server
         tty: true
         networks:
             internet:
@@ -99,6 +103,9 @@ services:
         environment:
             - RUN
         tty: true
+        depends_on:
+            - main_server
+            - far_server
         networks:
             internet:
                 ipv4_address: 10.0.0.4
@@ -106,6 +113,8 @@ services:
 networks:
     internet:
         driver: "bridge"
+        driver_opts:
+            com.docker.network.bridge.enable_ip_masquerade: 'false'
         name: internet
         ipam:
             config:
@@ -114,6 +123,8 @@ networks:
 
     net_main:
         driver: "bridge"
+        driver_opts:
+            com.docker.network.bridge.enable_ip_masquerade: 'false'
         name: net_main
         ipam:
             config:
@@ -122,9 +133,10 @@ networks:
 
     net_far:
         driver: "bridge"
+        driver_opts:
+            com.docker.network.bridge.enable_ip_masquerade: 'false'
         name: net_far
         ipam:
             config:
                 -
                  subnet: 10.0.2.0/24
-

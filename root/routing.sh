@@ -2,9 +2,6 @@
 
 if ip link | grep -q eth1; then
   echo "It's a server"
-  nft add table nat
-  nft add chain nat postrouting '{ type nat hook postrouting priority 100; }'
-  nft add rule nat postrouting oif eth0 masquerade
 else
   IP=$( ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1 )
   if [[ "$IP" =~ 10.0.0. ]]; then
