@@ -46,7 +46,7 @@ Le rendu doit se faire par un `git commit` sur la branche `main`.
 
 ## Échéance
 
-Ce travail devra être rendu au plus tard, **le 14 mai 2023 à 23h59.**
+Ce travail devra être rendu au plus tard, **le 28 mai 2023 à 23h59.**
 
 ## Évaluation
 
