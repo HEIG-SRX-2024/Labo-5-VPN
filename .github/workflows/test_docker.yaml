@@ -8,6 +8,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Pull docker
-        run: docker pull ghcr.io/heig-srx-2023/srx-labo-5
+        run: docker pull ghcr.io/heig-srx-2024/srx-labo-5
       - name: Test VPNs
         run: test/runit.sh

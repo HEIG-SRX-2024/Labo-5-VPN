@@ -1,11 +1,8 @@
-version: '3.7'
-
 services:
     main_server:
-        platform: linux/amd64
         hostname: 'MainServer'
         container_name: 'MainS'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         build: .
         cap_add :
             - NET_ADMIN
@@ -26,7 +23,7 @@ services:
     main_client_1:
         hostname: 'MainClient1'
         container_name: 'MainC1'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         stdin_open: true
@@ -38,7 +35,7 @@ services:
     main_client_2:
         hostname: 'MainClient2'
         container_name: 'MainC2'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         stdin_open: true
@@ -50,7 +47,7 @@ services:
     far_server:
         hostname: 'FarServer'
         container_name: 'FarS'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         volumes:
@@ -70,7 +67,7 @@ services:
     far_client_1:
         hostname: 'FarClient1'
         container_name: 'FarC1'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         stdin_open: true
@@ -82,7 +79,7 @@ services:
     far_client_2:
         hostname: 'FarClient2'
         container_name: 'FarC2'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         stdin_open: true
@@ -94,7 +91,7 @@ services:
     remote:
         hostname: 'Remote'
         container_name: 'Remote'
-        image: ghcr.io/heig-srx-2023/srx-labo-5
+        image: ghcr.io/heig-srx-2024/srx-labo-5
         cap_add :
             - NET_ADMIN
         volumes:
@@ -113,8 +110,6 @@ services:
 networks:
     internet:
         driver: "bridge"
-        driver_opts:
-            com.docker.network.bridge.enable_ip_masquerade: 'false'
         name: internet
         ipam:
             config:
