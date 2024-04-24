@@ -209,12 +209,13 @@ est signé par le certificat racine, vérifié avec la clé publique qui est dis
 
 ---
 
-**Question 1.1 (1): route par défaut**
+**Question 1.1 (3): route par défaut**
 
-TODO: faire les question plus claires.
+a) Pourquoi on veut faire un routage par défaut qui passe à travers le VPN?
 
-a) Quel est l'impact sur la sécurité si le routage par défaut passe par le OpenVPN?
-b) Quel est un possible défaut dans cette configuration qui peut réduire la sécurité?
+b) Cherchez sur internet une faille souvent rencontrée quand un fait un routage par défault à travers le VPN?
+
+c) Donnez un cas où le routage par défaut à travers le VPN n'est pas indiqué: host-host, remote-access, site-site? Et pourquoi?
 
 ---
 
