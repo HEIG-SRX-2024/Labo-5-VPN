@@ -66,7 +66,7 @@ Les pénalités suivantes sont appliquées:
 
 - 1/2 note pour chaque tranche de 24h de retard
 
-À la fin du document, vous trouverez une liste de points supplémentaires qui se feront sur la base de votre
+À la fin du document, vous trouverez **une liste de points supplémentaires qui seront évalués** sur la base de votre
 code rendu.
 
 ## Introduction
@@ -211,7 +211,7 @@ est signé par le certificat racine, vérifié avec la clé publique qui est dis
 
 **Question 1.1 (3): route par défaut**
 
-a) Pourquoi on veut faire un routage par défaut qui passe à travers le VPN?
+a) Pourquoi veut on faire un routage par défaut qui passe à travers le VPN?
 
 b) Cherchez sur internet une faille souvent rencontrée quand un fait un routage par défault à travers le VPN?
 
@@ -265,9 +265,9 @@ Donnez les commandes et décrivez à quoi servent les arguments.
 
 ---
 
-**Question bonus 1.4 (2) : création de clés sécurisée**
+**Question bonus 1.4 (2) : création de clés sécurisées**
 
-Quel est une erreur courante dans la création de ces clés comme décrite dans le HOWTO d'OpenVPN?
+Quel est une erreur courante lors de la création de ces clés, comme décrite dans le HOWTO d'OpenVPN?
 Comment est-ce qu'on peut éviter cette erreur?
 Réfléchissez par rapport à la sécurité: qui pourrait abuser des clés et dans quel but?
 
@@ -378,8 +378,7 @@ sont effacées.
 
 # WireGuard
 
-Pour WireGuard la partie `Desktop à réseau` est une partie
-bonus qu'il ne faut pas faire absolument.
+Pour WireGuard la partie `Desktop à réseau` est optionnelle.
 Vous allez configurer WireGuard avec des clés statiques, tout en décrivant comment éviter que les
 clés privées se trouvent sur plus d'une seule machine.
 Utilisez le port `51820` pour les connexions, car c'est celui qui est aussi ouvert avec le `docker-compose.yaml`.
@@ -388,9 +387,9 @@ Vous trouverez des détails sur l'installation de WireGuard ici:
 
 ## Création des clés
 
-D'abord il faut commencer à créer des clés statiques pour les différentes machines.
+D'abord il faut commencer par créer des clés statiques pour les différentes machines.
 Utilisez la commande `wg` pour ceci et stockez les clés quelque part dans les répertoires `root`,
-pour que vous puissiez les retrouver facilement après.
+pour que vous puissiez les retrouver facilement par la suite.
 
 ---
 
@@ -446,7 +445,7 @@ Il faut qu'elle puisse contacter toutes les autres machines des réseaux `Main` 
 **Question 2.3 (1): tableau de routage sur `MainS`**
 
 Ajoutez ici une copie du tableau de routage de `MainS` une fois les connexions avec
-`FarS` et `Remote` sont établies.
+`FarS` et `Remote` établies.
 Utilisez la commande `ip route` pour l'afficher.
 
 ---
@@ -495,7 +494,7 @@ Mettez le fichier de configuration quelque part dans le répertoire `root/host`.
 Ici, vous allez utiliser l'implémentation de StrongSwan
 pour mettre en place un VPN entre les différentes machines.
 Comme OpenVPN, StrongSwan se base sur des certificats pour l'autorisation des connexions.
-Par contre, il ne va pas utiliser le TLS pour la connexion, mais d'autres protocols.
+Par contre, il ne va pas utiliser le TLS pour la connexion, mais d'autres protocoles.
 
 Vous trouvez des informations pour l'installation sur le 
 [StrongSwan QuickStart](https://docs.strongswan.org/docs/5.9/config/quickstart.html)
@@ -548,12 +547,12 @@ pki --san main --san 10.0.0.2 ...
 
 ---
 
-**Question 3.2 (3) : création de clés hôtes sécurisée**
+**Question 3.2 (3) : création de clés hôtes sécurisées**
 
 Dans la documentation de StrongSwan il y a une description pour éviter que la personne qui a créé le
 CA de racine voie les clés privées des hôtes.
 Supposant qu'il y a deux entités, le `CA holder` et le `host`, décrivez chronologiquement qui crée quelle
-clé à quel moment, et quelles sont les fichiers échangés.
+clé à quel moment, et quels sont les fichiers échangés.
 
 ---
 
@@ -564,7 +563,7 @@ clé à quel moment, et quelles sont les fichiers échangés.
 ## Réseau à réseau
 
 Maintenant, vous êtes prêt·e·s pour configurer StrongSwan pour connecter les réseaux `Main` et `Far`.
-Faites attention, parce que StrongSwan va seulement créer la connexion une fois un paquet le requiert.
+Faites attention, parce que StrongSwan va seulement créer la connexion une fois qu'un paquet le requiert.
 En mettant en place la connexion, `charon` va journaliser ses efforts dans le terminal.
 Regardez bien ce journal si quelque chose ne marche pas.
 
@@ -589,8 +588,8 @@ ce fichier.
 ## Remote à Réseau
 
 La prochaine étape est de connecter un seul hôte à `MainS`.
-Ce hôte doit être capable de contacter autant le réseau `main` que le réseau `far`.
-Bien sûr que ça requiert que l'IPSec entre `main` et `far` est actif.
+Cet hôte doit être capable de contacter autant le réseau `main` que le réseau `far`.
+Bien sûr, cela requiert que l'IPSec entre `main` et `far` est actif.
 Ceci correspond à la configuration `Roadwarrior` du document de OpenSwan.
 
 ---
@@ -621,7 +620,7 @@ Faites un commit et un push, et vérifiez que github vous donne le feu vert.
 
 # Comparaison
 
-Maintenant, vous allez devoir comparer les différents protocols entre eux.
+Maintenant, vous allez devoir comparer les différents protocoles entre eux.
 Pour chaque question, assurez-vous de bien donner des explications complètes,
 sauf si la question vous demande de donner qu'une courte réponse.
 
@@ -631,9 +630,8 @@ sauf si la question vous demande de donner qu'une courte réponse.
 
 **Question 4.1 (2) : Sécurité de la communication**
 
-Décrivez la sécurité maximale disponible pour chaque protocol une fois la connexion établie.
-Pour chacune de votre configuration retenue dans ce labo, décrivez quels sont les algorithmes
-utilisés pour sécuriser la connexion.
+Décrivez la sécurité maximale disponible pour chaque protocole une fois la connexion établie.
+Pour chacune de vos configurations retenues dans ce labo, décrivez quels sont les algorithmes utilisés pour sécuriser la connexion.
 
 ---
 
@@ -670,8 +668,7 @@ sécure ou pas.
 
 Quelle est la complexité de mettre en place un serveur pour les deux cas demandés
 dans les exercices?
-Trier votre réponse pour que la solution VPN la plus facile soit au début et que la difficulté augmente avec chaque
-entrée.
+Triez votre réponse par ordre croissant de complexité.
 
 ---
 
@@ -687,15 +684,16 @@ entrée.
 
 ---
 
-**Question 4.4 (2) : Plus vite au plus lent**
+**Question 4.4 (2) : Plus rapide au plus lent**
 
 Triez les trois configurations que nous avons vues dans l'ordre décroissant
 de leur vitesse mesuré avec `iperf`.
-Pour chaque protocol, indiquez les trois vitesses suivantes:
+Pour chaque protocole, indiquez les trois vitesses suivantes:
 - entre le `MainS` et le `FarS`
 - entre `MainC1` et `FarC1` 
 - entre `Remote` et `FarC2`
-Si un des protocols est beaucoup plus rapide que les autres, décrivez pourquoi c'est le cas.
+
+Si un des protocoles est beaucoup plus rapide que les autres, décrivez pourquoi c'est le cas.
 
 ---
 
